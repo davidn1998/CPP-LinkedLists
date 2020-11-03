@@ -67,7 +67,9 @@ void LinkedList::insert_head(int t)
 	LNode *newHead = new LNode;
 	newHead->data_ = t;
 	newHead->next_ = head_;
+	newHead->prev_ = nullptr;
 	head_ = newHead;
+	head_->next_->prev_ = head_;
 }
 
 void LinkedList::insert_after(LNode *location, int t)
@@ -78,6 +80,8 @@ void LinkedList::insert_after(LNode *location, int t)
 	LNode *newNode = new LNode;
 	newNode->data_ = t;
 	newNode->next_ = location->next_;
+	newNode->prev_ = location;
+	newNode->next_->prev_ = newNode;
 	location->next_ = newNode;
 }
 
